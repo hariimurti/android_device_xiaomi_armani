@@ -28,6 +28,8 @@
 
 #define CPUFREQ_PATH "/sys/devices/system/cpu/cpu0/cpufreq/"
 #define INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive/"
+#define DOUBLE_TAP_TO_WAKE_PATH "/sys/android_touch/doubletap_wake"
+#define SWEEP_TO_WAKE_PATH "/sys/android_touch/sweep_wake"
 
 static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 static int boostpulse_fd = -1;
@@ -194,6 +196,25 @@ static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
 
+static void set_feature(__attribute__((unused)) struct power_module *module, feature_t feature,
+				__attribute__((unused)) int state)
+{
+    switch (feature) {
+#ifdef DOUBLE_TAP_TO_WAKE_PATH
+        case POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
+            ALOGV("%s: %s dt2w and s2w", __func__, state ? "enabling" : "disabling");
+            sysfs_write_str(DOUBLE_TAP_TO_WAKE_PATH, state > 0 ? "1\n" : "0\n");
+#ifdef SWEEP_TO_WAKE_PATH
+            sysfs_write_str(SWEEP_TO_WAKE_PATH, state > 0 ? "1\n" : "0\n");
+#endif
+            break;
+#endif
+        default:
+            ALOGW("Error setting the feature, it doesn't exist %d\n", feature);
+            break;
+    }
+}
+
 static int get_feature(__attribute__((unused)) struct power_module *module,
                        feature_t feature)
 {
@@ -217,5 +238,6 @@ struct power_module HAL_MODULE_INFO_SYM = {
     .init = power_init,
     .setInteractive = power_set_interactive,
     .powerHint = power_hint,
-    .getFeature = get_feature
+    .getFeature = get_feature,
+    .setFeature = set_feature
 };
