@@ -196,6 +196,16 @@ on post-fs-data
     chown system system /sys/class/timed_output/vibrator/amp
     chmod 0664 /sys/class/timed_output/vibrator/amp
 
+    # Double Tap and Sweep to wake
+    chown system system /sys/android_touch/doubletap_wake
+    chmod 0664 /sys/android_touch/doubletap_wake
+    chown system system /sys/android_touch/doubletap_feather
+    chmod 0664 /sys/android_touch/doubletap_feather
+    chown system system /sys/android_touch/doubletap_timeout
+    chmod 0664 /sys/android_touch/doubletap_timeout
+    chown system system /sys/android_touch/sweep_wake
+    chmod 0664 /sys/android_touch/sweep_wake
+
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main
     user root
