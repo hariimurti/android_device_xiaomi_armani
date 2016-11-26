@@ -1,7 +1,7 @@
 [
   {
     "remote"       : "github",
-    "repository"   : "armani-dev/proprietary_vendor_xiaomi",
+    "repository"   : "TheMuppets/proprietary_vendor_xiaomi",
     "target_path"  : "vendor/xiaomi",
     "branch"       : "cm-14.1"
   },
