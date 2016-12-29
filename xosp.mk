@@ -23,8 +23,7 @@ $(call inherit-product-if-exists, vendor/xiaomi/armani/armani-vendor.mk)
 
 # Inherit some common XOSP stuff
 $(call inherit-product, vendor/xosp/config/common_full_phone.mk)
-$(call inherit-product, vendor/xosp/config/xosp_audio.mk)
-$(call inherit-product, vendor/xosp/config/xosp_extras.mk)
+$(call inherit-product, vendor/xosp/config/xosp.mk)
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := armani
