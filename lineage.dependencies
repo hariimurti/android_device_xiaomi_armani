@@ -1,6 +1,12 @@
 [
   {
     "remote"       : "github",
+    "repository"   : "hariimurti/kernel_armani_dt2w",
+    "target_path"  : "kernel/xiaomi/armani",
+    "branch"       : "nougat"
+  },
+  {
+    "remote"       : "github",
     "repository"   : "TheMuppets/proprietary_vendor_xiaomi",
     "target_path"  : "vendor/xiaomi",
     "branch"       : "cm-14.1"
