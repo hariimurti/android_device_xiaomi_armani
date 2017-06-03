@@ -51,6 +51,3 @@ ro.telephony.ril.config=simactivation
 
 # OTA
 cm.updater.uri=http://localhost
-
-# Music Fix
-ro.qualcomm.perf.cores_online=2
