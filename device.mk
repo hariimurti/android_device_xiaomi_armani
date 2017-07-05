@@ -68,6 +68,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.armani.bt.sh:system/bin/init.armani.bt.sh
 
+# Busybox
+PRODUCT_PACKAGES += \
+    busybox
+
 # CABL
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.cabl=0
