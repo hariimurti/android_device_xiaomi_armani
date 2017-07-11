@@ -3,7 +3,7 @@
     "remote"       : "github",
     "repository"   : "hariimurti/kernel_armani_dt2w",
     "target_path"  : "kernel/xiaomi/armani",
-    "branch"       : "nougat"
+    "branch"       : "phantom-mod"
   },
   {
     "remote"       : "github",
