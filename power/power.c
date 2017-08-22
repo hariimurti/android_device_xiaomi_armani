@@ -28,7 +28,6 @@
 
 #define CPUFREQ_PATH "/sys/devices/system/cpu/cpu0/cpufreq/"
 #define INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive/"
-#define DOUBLE_TAP_TO_WAKE_PATH "/sys/android_touch/doubletap_wake"
 #define SWEEP_TO_WAKE_PATH "/sys/android_touch/sweep_wake"
 
 static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
@@ -207,13 +206,10 @@ static void set_feature(__attribute__((unused)) struct power_module *module, fea
 				__attribute__((unused)) int state)
 {
     switch (feature) {
-#ifdef DOUBLE_TAP_TO_WAKE_PATH
-        case POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
-            ALOGV("%s: %s dt2w and s2w", __func__, state ? "enabling" : "disabling");
-            sysfs_write_str(DOUBLE_TAP_TO_WAKE_PATH, state > 0 ? "1\n" : "0\n");
 #ifdef SWEEP_TO_WAKE_PATH
+        case POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
+            ALOGV("%s: %s sweep to wake", __func__, state ? "enabling" : "disabling");
             sysfs_write_str(SWEEP_TO_WAKE_PATH, state > 0 ? "1\n" : "0\n");
-#endif
             break;
 #endif
         default:
